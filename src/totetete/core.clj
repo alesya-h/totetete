@@ -1,5 +1,6 @@
 (ns totetete.core
   (:require
+   [totetete.connection.socket :as sc]
    [mount.lite :as m])
   (:gen-class))
 
