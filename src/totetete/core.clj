@@ -1,6 +1,7 @@
 (ns totetete.core
   (:require
-   [totetete.connection.socket :as sc]
+   [totetete.mount-exit]
+   [totetete.events] ;; event handling setup and the receive loop thread
    [mount.lite :as m])
   (:gen-class))
 

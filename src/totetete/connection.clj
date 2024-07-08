@@ -1,20 +1,11 @@
 (ns totetete.connection
   (:require
-   [totetete.connection.socket :as sc]))
+   [totetete.connection.socket :as sc]
+   [mount.lite :as m]))
 
-(defonce !vm (atom nil))
-
-(defn attach! []
-  (when-not @!vm
-    (reset! !vm (sc/attach!))
-    (.suspend @!vm)))
-
-(defn detach! []
-  (reset! !vm nil)
-  (.dispose @!vm))
-
-(detach!)
-#_(attach!)
+(m/defstate !vm
+  :start (sc/attach!)
+  :stop (.dispose @!vm))
 
 (defn evreq-manager [] (.eventRequestManager @!vm))
 (defn ev-queue [] (.eventQueue @!vm))
